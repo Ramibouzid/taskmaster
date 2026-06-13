@@ -34,7 +34,7 @@ def create_app(config_class=Config):
 
     @app.context_processor
     def inject_now():
-        return {"now": datetime.now(timezone.utc)}
+        return {"now": datetime.now(timezone.utc).replace(tzinfo=None)}
 
     with app.app_context():
         from app import models

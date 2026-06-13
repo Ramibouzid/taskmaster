@@ -1,3 +1,4 @@
+import io
 import logging
 from datetime import datetime, timezone
 
@@ -76,3 +77,40 @@ def get_dashboard_stats(user_id):
         ).count(),
         "projects": Project.query.filter(Project.user_id == user_id).count(),
     }
+
+
+def generate_tasks_pdf(tasks, user):
+    from fpdf import FPDF
+
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Helvetica", "B", 16)
+    pdf.cell(0, 10, f"Task Report - {user.name}", new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.set_font("Helvetica", "", 9)
+    pdf.cell(0, 7, f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}", new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.ln(5)
+    statuses = ["backlog", "todo", "in_progress", "done"]
+    labels = {"backlog": "Backlog", "todo": "To Do", "in_progress": "In Progress", "done": "Done"}
+    for status in statuses:
+        status_tasks = [t for t in tasks if t.status == status]
+        if not status_tasks:
+            continue
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.set_fill_color(243, 244, 246)
+        pdf.cell(0, 8, f" {labels[status]} ({len(status_tasks)})", new_x="LMARGIN", new_y="NEXT", fill=True)
+        pdf.set_font("Helvetica", "", 10)
+        for task in status_tasks:
+            pdf.cell(0, 6, f"  {task.title}", new_x="LMARGIN", new_y="NEXT")
+            detail = f"  Priority: {task.priority}"
+            if task.due_date:
+                detail += f" | Due: {task.due_date.strftime('%Y-%m-%d')}"
+            if task.estimated_hours:
+                detail += f" | Est: {task.estimated_hours}h"
+            pdf.set_font("Helvetica", "", 8)
+            pdf.cell(0, 5, detail, new_x="LMARGIN", new_y="NEXT")
+            pdf.set_font("Helvetica", "", 10)
+        pdf.ln(3)
+    buf = io.BytesIO()
+    pdf.output(buf)
+    buf.seek(0)
+    return buf

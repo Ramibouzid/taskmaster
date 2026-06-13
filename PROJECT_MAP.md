@@ -102,6 +102,7 @@ taskmaster/
 
 | Item | Status | Notes |
 |------|--------|-------|
+| PDF export | DONE | fpdf2 generates task report PDF from /tasks/export-pdf; download button on Board |
 | AI tests | PENDING | Requires live OpenAI API key; mock-based tests needed |
 | DB migrations init | PENDING | Run `flask db init && flask db migrate && flask db upgrade` before prod. `db.create_all()` in create_app() handles dev auto-setup |
 | PostgreSQL adapter | PENDING | Add `psycopg2` to requirements when switching to PostgreSQL |
@@ -119,3 +120,5 @@ taskmaster/
 | 2026-06-13 | Fix: auto-create DB tables in create_app() to prevent 500 on first register | Tech Lead |
 | 2026-06-13 | Fix: pass OPENAI_BASE_URL to OpenAI client for OpenRouter/NVIDIA compatibility | Tech Lead |
 | 2026-06-13 | Fix: exempt AI POST routes from CSRF (was blocking AJAX with HTML 400, causing 'Request failed') | Tech Lead |
+| 2026-06-13 | Fix: board 500 — `datetime.now(timezone.utc)` (offset-aware) vs DB naive datetime comparison on Python 3.12 | Tech Lead |
+| 2026-06-13 | Feat: PDF task report export via fpdf2, route GET /tasks/export-pdf, download button on Board | Tech Lead |

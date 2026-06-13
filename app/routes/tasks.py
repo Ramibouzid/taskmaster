@@ -27,9 +27,8 @@ def board():
         return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
                                statuses=statuses, projects=projects)
     except Exception as e:
-        msg = "Board error: %s\n%s" % (str(e), traceback.format_exc())
-        logger.error(msg)
-        return msg, 500
+        logger.error("Board error: %s\n%s", str(e), traceback.format_exc())
+        return render_template("errors/500.html"), 500
 
 
 @tasks_bp.route("/create", methods=["GET", "POST"])
@@ -103,6 +102,19 @@ def move():
     if not task:
         return jsonify({"error": "Task not found"}), 404
     return jsonify({"ok": True})
+
+
+@tasks_bp.route("/export-pdf")
+@login_required
+def export_pdf():
+    from flask import send_file
+    from app.services import generate_tasks_pdf
+    tasks = Task.query.filter(
+        (Task.assignee_id == current_user.id) | (Task.created_by == current_user.id)
+    ).order_by(Task.position).all()
+    buf = generate_tasks_pdf(tasks, current_user)
+    return send_file(buf, mimetype="application/pdf", as_attachment=True,
+                     download_name="task_report.pdf")
 
 
 @tasks_bp.route("/<int:task_id>")
