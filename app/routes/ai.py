@@ -2,6 +2,7 @@ import logging
 import json
 from flask import Blueprint, render_template, request, jsonify, current_app
 from flask_login import login_required, current_user
+from app.extensions import csrf
 from app.forms import AIForm
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,7 @@ def assistant():
 
 
 @ai_bp.route("/generate-task", methods=["POST"])
+@csrf.exempt
 @login_required
 def generate_task():
     from app.extensions import db
@@ -51,6 +53,7 @@ def generate_task():
 
 
 @ai_bp.route("/chat", methods=["POST"])
+@csrf.exempt
 @login_required
 def chat():
     data = request.get_json() or {}

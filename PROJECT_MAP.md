@@ -118,3 +118,4 @@ taskmaster/
 | 2026-06-13 | Initial scaffold: app factory, config, models, auth, tasks, projects, AI, logging, error pages, Docker, tests | Tech Lead |
 | 2026-06-13 | Fix: auto-create DB tables in create_app() to prevent 500 on first register | Tech Lead |
 | 2026-06-13 | Fix: pass OPENAI_BASE_URL to OpenAI client for OpenRouter/NVIDIA compatibility | Tech Lead |
+| 2026-06-13 | Fix: exempt AI POST routes from CSRF (was blocking AJAX with HTML 400, causing 'Request failed') | Tech Lead |
