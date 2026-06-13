@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Task Board - TaskMaster{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Task Board</h1>
+    <a href="{{ url_for('tasks.create') }}" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">New Task</a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4" x-data="kanbanBoard()">
+    {% for status in statuses %}
+    <div>
+        <div class="flex items-center justify-between mb-2 px-2">
+            <h2 class="font-semibold text-gray-700 text-sm uppercase">{{ status|replace("_", " ")|title }}</h2>
+            <span class="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">{{ tasks_by_status[status]|length }}</span>
+        </div>
+        <div class="min-h-[200px] bg-gray-100 rounded-lg p-2 space-y-2"
+             x-ref="column-{{ status }}"
+             data-status="{{ status }}"
+             @dragover.prevent
+             @drop="onDrop($event, '{{ status }}')">
+            {% for task in tasks_by_status[status] %}
+            <div class="bg-white p-3 rounded-lg shadow-sm border cursor-move hover:shadow-md"
+                 draggable="true"
+                 data-task-id="{{ task.id }}"
+                 @dragstart="onDragStart($event, {{ task.id }})"
+                 id="task-{{ task.id }}">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs px-1.5 py-0.5 rounded {% if task.priority == 'critical' %}bg-red-100 text-red-700{% elif task.priority == 'high' %}bg-orange-100 text-orange-700{% elif task.priority == 'medium' %}bg-yellow-100 text-yellow-700{% else %}bg-gray-100 text-gray-700{% endif %}">{{ task.priority }}</span>
+                    {% if task.due_date %}
+                    <span class="text-xs {% if task.due_date < now and task.status != 'done' %}text-red-500{% else %}text-gray-400{% endif %}">
+                        {{ task.due_date.strftime('%b %d') }}
+                    </span>
+                    {% endif %}
+                </div>
+                <a href="{{ url_for('tasks.detail', task_id=task.id) }}" class="text-sm font-medium text-gray-900 hover:text-indigo-600 block mb-1">{{ task.title }}</a>
+                {% if task.project %}
+                <span class="text-xs text-gray-400">{{ task.project.name }}</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<script>
+function kanbanBoard() {
+    return {
+        draggedTaskId: null,
+        onDragStart(event, taskId) {
+            this.draggedTaskId = taskId;
+            event.dataTransfer.effectAllowed = 'move';
+        },
+        onDrop(event, newStatus) {
+            if (!this.draggedTaskId) return;
+            const targetColumn = event.currentTarget;
+            const cards = targetColumn.querySelectorAll('[data-task-id]');
+            let position = 0;
+            for (let i = 0; i < cards.length; i++) {
+                if (parseInt(cards[i].dataset.taskId) === this.draggedTaskId) {
+                    position = i;
+                    break;
+                }
+                position = i + 1;
+            }
+            fetch('/tasks/move', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token() }}'},
+                body: JSON.stringify({task_id: this.draggedTaskId, status: newStatus, position: position})
+            }).then(r => r.json()).then(d => { if (d.ok) location.reload(); });
+            this.draggedTaskId = null;
+        }
+    };
+}
+</script>
+{% endblock %}

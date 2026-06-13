@@ -1,0 +1,349 @@
+2026-06-13 16:36:12,515 INFO [app] Logging initialized
+2026-06-13 16:36:58,593 INFO [app] Logging initialized
+2026-06-13 16:42:51,970 INFO [app] Logging initialized
+2026-06-13 16:43:09,171 INFO [app] Logging initialized
+2026-06-13 16:43:09,171 INFO [app] Logging initialized
+2026-06-13 16:44:41,198 INFO [app] Logging initialized
+2026-06-13 16:46:03,929 ERROR [app] Exception on /register [POST]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\auth.py", line 18, in register
+    if User.query.filter_by(email=form.email.data).first():
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2372, in execute
+    return self._execute_internal(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2270, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.email AS users_email, users.password_hash AS users_password_hash, users.name AS users_name, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('111@1.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-13 16:46:04,028 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:46:23,880 ERROR [app] Exception on /register [POST]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\auth.py", line 18, in register
+    if User.query.filter_by(email=form.email.data).first():
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2372, in execute
+    return self._execute_internal(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2270, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.email AS users_email, users.password_hash AS users_password_hash, users.name AS users_name, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('rami_bouzid@hotmail.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-13 16:46:23,885 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:47:15,432 ERROR [app] Exception on /register [POST]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\auth.py", line 18, in register
+    if User.query.filter_by(email=form.email.data).first():
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2372, in execute
+    return self._execute_internal(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2270, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.email AS users_email, users.password_hash AS users_password_hash, users.name AS users_name, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('rami_bouzid@hotmail.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-13 16:47:15,437 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:47:22,946 ERROR [app] Exception on /login [POST]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\auth.py", line 38, in login
+    user = User.query.filter_by(email=form.email.data).first()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2372, in execute
+    return self._execute_internal(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2270, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.email AS users_email, users.password_hash AS users_password_hash, users.name AS users_name, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('rami_bouzid@hotmail.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-13 16:47:22,951 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:49:07,293 INFO [app] Logging initialized
+2026-06-13 16:49:25,805 ERROR [app] Exception on /login [POST]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\auth.py", line 38, in login
+    user = User.query.filter_by(email=form.email.data).first()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2372, in execute
+    return self._execute_internal(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\session.py", line 2270, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.email AS users_email, users.password_hash AS users_password_hash, users.name AS users_name, users.created_at AS users_created_at 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('rami_bouzid@hotmail.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-13 16:49:25,819 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:51:22,863 INFO [app] Logging initialized
+2026-06-13 16:51:33,877 INFO [app] Logging initialized
+2026-06-13 16:52:53,250 INFO [app] Logging initialized
+2026-06-13 16:53:18,837 INFO [app.routes.auth] User registered: id=2 email=rami_bouzid@hotmail.com
+2026-06-13 16:55:55,188 INFO [app.services] Project created: id=1 name=pj1
+2026-06-13 16:56:44,937 INFO [app.services] Task created: id=1 title=Visit sister
+2026-06-13 16:56:44,976 ERROR [app] Exception on /tasks/ [GET]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\tasks.py", line 25, in board
+    return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\tasks\board.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\base.html", line 46, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\tasks\board.html", line 30, in block 'content'
+    <span class="text-xs {% if task.due_date < now and task.status != 'done' %}text-red-500{% else %}text-gray-400{% endif %}">
+TypeError: can't compare offset-naive and offset-aware datetimes
+2026-06-13 16:56:45,004 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:56:58,529 ERROR [app] Exception on /tasks/ [GET]
+Traceback (most recent call last):
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\routes\tasks.py", line 25, in board
+    return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "c:\users\orelson\appdata\local\programs\python\python39\lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\tasks\board.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\base.html", line 46, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\Orelson\AppData\Local\Temp\opencode\taskmaster\app\templates\tasks\board.html", line 30, in block 'content'
+    <span class="text-xs {% if task.due_date < now and task.status != 'done' %}text-red-500{% else %}text-gray-400{% endif %}">
+TypeError: can't compare offset-naive and offset-aware datetimes
+2026-06-13 16:56:58,532 ERROR [app] Server error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+2026-06-13 16:57:18,507 ERROR [app.routes.ai] AI chat failed: Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.
