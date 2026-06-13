@@ -1,4 +1,5 @@
 import logging
+import traceback
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from app.extensions import db
@@ -13,17 +14,21 @@ tasks_bp = Blueprint("tasks", __name__)
 @tasks_bp.route("/")
 @login_required
 def board():
-    projects = Project.query.filter_by(user_id=current_user.id).all()
-    statuses = Task.STATUSES
-    tasks_by_status = {}
-    for s in statuses:
-        tasks_by_status[s] = Task.query.filter_by(
-            status=s
-        ).filter(
-            (Task.assignee_id == current_user.id) | (Task.created_by == current_user.id)
-        ).order_by(Task.position).all()
-    return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
-                           statuses=statuses, projects=projects)
+    try:
+        projects = Project.query.filter_by(user_id=current_user.id).all()
+        statuses = Task.STATUSES
+        tasks_by_status = {}
+        for s in statuses:
+            tasks_by_status[s] = Task.query.filter_by(
+                status=s
+            ).filter(
+                (Task.assignee_id == current_user.id) | (Task.created_by == current_user.id)
+            ).order_by(Task.position).all()
+        return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
+                               statuses=statuses, projects=projects)
+    except Exception as e:
+        logger.error("Board error: %s\n%s", str(e), traceback.format_exc())
+        return render_template("errors/500.html"), 500
 
 
 @tasks_bp.route("/create", methods=["GET", "POST"])
