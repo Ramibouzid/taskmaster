@@ -60,12 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('#ai-generate-form input[name=csrf_token]').value},
                 body: JSON.stringify({title})
             });
+            if (!r.ok) {
+                const text = await r.text();
+                contentDiv.textContent = 'HTTP ' + r.status + ': ' + text.substring(0, 200);
+                return;
+            }
             const d = await r.json();
             if (d.error) { contentDiv.textContent = 'Error: ' + d.error; return; }
             contentDiv.innerHTML = `<p><strong>Description:</strong> ${d.description || 'N/A'}</p><p><strong>Est. Hours:</strong> ${d.estimated_hours || 'N/A'}</p><p><strong>Priority:</strong> ${d.priority}</p><p><strong>Tags:</strong> ${(d.tags||[]).join(', ') || 'N/A'}</p>`;
             fillBtn.classList.remove('hidden');
             fillBtn.onclick = () => { window.location.href = '/tasks/create?title=' + encodeURIComponent(title) + '&description=' + encodeURIComponent(d.description||'') + '&priority=' + d.priority + '&hours=' + (d.estimated_hours||''); };
-        } catch(e) { contentDiv.textContent = 'Request failed.'; }
+        } catch(e) { contentDiv.textContent = 'Request failed: ' + e.message; }
     });
 
     if (chatForm) chatForm.addEventListener('submit', async function(e) {
@@ -84,6 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('#chat-form input[name=csrf_token]').value},
                 body: JSON.stringify({message: msg})
             });
+            if (!r.ok) {
+                const text = await r.text();
+                msgs.querySelector('div:last-child').remove();
+                msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-red-100 px-3 py-1.5 rounded-lg inline-block">HTTP ' + r.status + ': ' + text.substring(0, 200) + '</span></div>';
+                msgs.scrollTop = msgs.scrollHeight;
+                return;
+            }
             const d = await r.json();
             msgs.querySelector('div:last-child').remove();
             const reply = d.error || d.reply;
@@ -91,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             msgs.scrollTop = msgs.scrollHeight;
         } catch(e) {
             msgs.querySelector('div:last-child').remove();
-            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-red-100 px-3 py-1.5 rounded-lg inline-block">Request failed.</span></div>';
+            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-red-100 px-3 py-1.5 rounded-lg inline-block">Request failed: ' + e.message + '</span></div>';
         }
     });
 });

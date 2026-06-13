@@ -28,15 +28,16 @@ def generate_task():
         return jsonify({"error": "Title is required"}), 400
 
     try:
-        from openai import OpenAI
-        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"], base_url=current_app.config["OPENAI_BASE_URL"])
+        from openai import OpenAI, Timeout
+        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"],
+                        base_url=current_app.config["OPENAI_BASE_URL"],
+                        timeout=Timeout(60.0, connect=10.0))
         response = client.chat.completions.create(
             model=current_app.config["OPENAI_MODEL"],
             messages=[
                 {"role": "system", "content": "You are a task management assistant. Given a task title, generate a description, estimated hours (number), priority (low/medium/high/critical), and up to 3 tags. Return raw JSON only."},
                 {"role": "user", "content": f"Task title: {title}"}
             ],
-            response_format={"type": "json_object"},
             temperature=0.3,
             max_tokens=300,
         )
@@ -63,8 +64,10 @@ def chat():
 
     try:
 
-        from openai import OpenAI
-        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"], base_url=current_app.config["OPENAI_BASE_URL"])
+        from openai import OpenAI, Timeout
+        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"],
+                        base_url=current_app.config["OPENAI_BASE_URL"],
+                        timeout=Timeout(60.0, connect=10.0))
         from app.models import Task
         tasks = Task.query.filter(
             (Task.assignee_id == current_user.id) | (Task.created_by == current_user.id)
@@ -79,7 +82,7 @@ def chat():
                 {"role": "user", "content": message}
             ],
             temperature=0.7,
-            max_tokens=500,
+            max_tokens=200,
         )
         reply = response.choices[0].message.content
         return jsonify({"reply": reply})
