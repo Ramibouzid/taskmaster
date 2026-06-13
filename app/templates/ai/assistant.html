@@ -2,37 +2,37 @@
 {% block title %}AI Assistant - TaskMaster{% endblock %}
 {% block content %}
 <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold mb-2">AI Assistant</h1>
-    <p class="text-gray-500 mb-6">Use AI to generate task details and get smart suggestions.</p>
+    <h1 class="text-3xl font-light text-white mb-2">AI Assistant</h1>
+    <p class="text-[#9d9797] mb-6">Use AI to generate task details and get smart suggestions.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-sm border">
-            <h2 class="text-lg font-semibold mb-4">Generate Task Details</h2>
-            <p class="text-sm text-gray-500 mb-4">Enter a task title and let AI fill in the description, estimate, and priority.</p>
+        <div class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46]">
+            <h2 class="text-lg font-medium text-white mb-4">Generate Task Details</h2>
+            <p class="text-sm text-[#9d9797] mb-4">Enter a task title and let AI fill in the description, estimate, and priority.</p>
             <form id="ai-generate-form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="mb-4">
-                    <input type="text" id="ai-title" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., Implement user authentication">
+                    <input type="text" id="ai-title" class="w-full px-3 py-2 border border-[#3e3a46] rounded-lg bg-[#0e0918] text-[#d1cece] placeholder-[#9d9797]" placeholder="e.g., Implement user authentication">
                 </div>
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Generate</button>
+                <button type="submit" class="px-4 py-2.5 bg-gradient-to-r from-[#fd8925] to-[#ff0c00] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">Generate</button>
             </form>
             <div id="ai-result" class="mt-4 hidden">
-                <h3 class="font-medium mb-2">Generated:</h3>
-                <div id="ai-result-content" class="text-sm bg-gray-50 p-3 rounded"></div>
-                <button id="ai-fill-btn" class="mt-2 text-sm text-indigo-600 hidden">Use details to create task</button>
+                <h3 class="font-medium text-white mb-2">Generated:</h3>
+                <div id="ai-result-content" class="text-sm bg-[#0e0918] p-3 rounded border border-[#3e3a46] text-[#d1cece]"></div>
+                <button id="ai-fill-btn" class="mt-2 text-sm text-[#077ac7] hidden">Use details to create task</button>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-sm border">
-            <h2 class="text-lg font-semibold mb-4">Chat with AI</h2>
-            <p class="text-sm text-gray-500 mb-4">Ask about your tasks, get prioritization advice, or plan your work.</p>
-            <div id="chat-messages" class="h-64 overflow-y-auto mb-4 space-y-2 p-2 bg-gray-50 rounded">
-                <div class="text-sm text-gray-400 text-center">Start a conversation about your tasks.</div>
+        <div class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46]">
+            <h2 class="text-lg font-medium text-white mb-4">Chat with AI</h2>
+            <p class="text-sm text-[#9d9797] mb-4">Ask about your tasks, get prioritization advice, or plan your work.</p>
+            <div id="chat-messages" class="h-64 overflow-y-auto mb-4 space-y-2 p-2 bg-[#0e0918] rounded border border-[#3e3a46]">
+                <div class="text-sm text-[#9d9797] text-center">Start a conversation about your tasks.</div>
             </div>
             <form id="chat-form" class="flex space-x-2">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <input type="text" id="chat-input" class="flex-1 px-3 py-2 border rounded-lg" placeholder="Ask about your tasks...">
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Send</button>
+                <input type="text" id="chat-input" class="flex-1 px-3 py-2 border border-[#3e3a46] rounded-lg bg-[#0e0918] text-[#d1cece] placeholder-[#9d9797]" placeholder="Ask about your tasks...">
+                <button type="submit" class="px-4 py-2.5 bg-gradient-to-r from-[#fd8925] to-[#ff0c00] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">Send</button>
             </form>
         </div>
     </div>
@@ -79,9 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const msg = input.value.trim();
         if (!msg) return;
         const msgs = document.getElementById('chat-messages');
-        msgs.innerHTML += '<div class="text-sm text-right"><span class="bg-indigo-100 px-3 py-1.5 rounded-lg inline-block">' + msg + '</span></div>';
+        msgs.innerHTML += '<div class="text-sm text-right"><span class="bg-[#2c2834] px-3 py-1.5 rounded-lg inline-block text-[#d1cece]">' + msg + '</span></div>';
         input.value = '';
-        msgs.innerHTML += '<div class="text-sm text-left"><span class="text-gray-400">Thinking...</span></div>';
+        msgs.innerHTML += '<div class="text-sm text-left"><span class="text-[#9d9797]">Thinking...</span></div>';
         msgs.scrollTop = msgs.scrollHeight;
         try {
             const r = await fetch('/ai/chat', {
@@ -92,18 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!r.ok) {
                 const text = await r.text();
                 msgs.querySelector('div:last-child').remove();
-                msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-red-100 px-3 py-1.5 rounded-lg inline-block">HTTP ' + r.status + ': ' + text.substring(0, 200) + '</span></div>';
+                msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-[#56312d] px-3 py-1.5 rounded-lg inline-block text-[#ff492c]">HTTP ' + r.status + ': ' + text.substring(0, 200) + '</span></div>';
                 msgs.scrollTop = msgs.scrollHeight;
                 return;
             }
             const d = await r.json();
             msgs.querySelector('div:last-child').remove();
             const reply = d.error || d.reply;
-            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-gray-100 px-3 py-1.5 rounded-lg inline-block">' + reply + '</span></div>';
+            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-[#2c2834] px-3 py-1.5 rounded-lg inline-block text-[#d1cece]">' + reply + '</span></div>';
             msgs.scrollTop = msgs.scrollHeight;
         } catch(e) {
             msgs.querySelector('div:last-child').remove();
-            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-red-100 px-3 py-1.5 rounded-lg inline-block">Request failed: ' + e.message + '</span></div>';
+            msgs.innerHTML += '<div class="text-sm text-left"><span class="bg-[#56312d] px-3 py-1.5 rounded-lg inline-block text-[#ff492c]">Request failed: ' + e.message + '</span></div>';
         }
     });
 });

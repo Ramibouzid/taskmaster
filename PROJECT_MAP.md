@@ -10,7 +10,8 @@
 | Forms | Flask-WTF + WTForms | 1.2.2 |
 | Migrations | Flask-Migrate + Alembic | 4.1.0 |
 | AI | OpenAI SDK | 2.41.1 (gpt-4o) |
-| Frontend | Jinja2 + HTMX 2.0 + Alpine.js 3.14 + Tailwind CSS | CDN |
+| Frontend | Jinja2 + HTMX 2.0 + Alpine.js 3.14 + Tailwind CSS + Inter (Google Fonts) | CDN |
+| Theme | n8n-inspired dark theme: void base #0e0918, elevated surfaces #1a1624, ember gradient CTAs, electric blue accents | — |
 | Database | SQLite (dev) / PostgreSQL (prod) | — |
 | WSGI | Waitress (win) / Gunicorn (linux) | 3.0.2 |
 | Testing | pytest + pytest-flask | 8.4.2 |
@@ -122,3 +123,4 @@ taskmaster/
 | 2026-06-13 | Fix: exempt AI POST routes from CSRF (was blocking AJAX with HTML 400, causing 'Request failed') | Tech Lead |
 | 2026-06-13 | Fix: board 500 — `datetime.now(timezone.utc)` (offset-aware) vs DB naive datetime comparison on Python 3.12 | Tech Lead |
 | 2026-06-13 | Feat: PDF task report export via fpdf2, route GET /tasks/export-pdf, download button on Board | Tech Lead |
+| 2026-06-13 | Theme: Applied n8n dark theme (void base #0e0918, elevated surfaces #1a1624, ember CTAs, Inter typography) across all templates | Tech Lead |

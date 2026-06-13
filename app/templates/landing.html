@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}TaskMaster - Smart Task Management{% endblock %}
 {% block content %}
-<div class="max-w-4xl mx-auto text-center py-20">
-    <h1 class="text-5xl font-bold text-gray-900 mb-4">TaskMaster</h1>
-    <p class="text-xl text-gray-600 mb-8">AI-powered task management for teams and individuals.</p>
-    <div class="space-x-4">
-        <a href="{{ url_for('auth.login') }}" class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Login</a>
-        <a href="{{ url_for('auth.register') }}" class="inline-block px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Register</a>
+<div class="min-h-[80vh] flex items-center">
+    <div class="max-w-2xl">
+        <h1 class="text-[48px] md:text-[54px] font-light text-white leading-[0.94] md:leading-[0.88] tracking-[-0.86px] md:tracking-[-1.08px] mb-6">TaskMaster<br><span class="text-[#d1cece]">AI-Powered Task Management</span></h1>
+        <p class="text-[16px] md:text-[18px] text-[#d1cece] leading-relaxed mb-10 max-w-lg">Smart task management for teams and individuals. Let AI handle the details while you focus on what matters.</p>
+        <div class="flex flex-wrap gap-4">
+            <a href="{{ url_for('auth.register') }}" class="inline-block px-6 py-3 bg-gradient-to-r from-[#fd8925] to-[#ff0c00] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">Get Started</a>
+            <a href="{{ url_for('auth.login') }}" class="inline-block px-6 py-3 border border-[#e5e7eb] text-white rounded-lg hover:bg-white/5 transition-colors">Login</a>
+        </div>
     </div>
 </div>
 {% endblock %}

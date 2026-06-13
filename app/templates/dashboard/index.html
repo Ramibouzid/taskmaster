@@ -2,49 +2,49 @@
 {% block title %}Dashboard - TaskMaster{% endblock %}
 {% block content %}
 <div class="mb-8">
-    <h1 class="text-3xl font-bold">Dashboard</h1>
-    <p class="text-gray-500">Welcome back, {{ current_user.name }}</p>
+    <h1 class="text-3xl font-light text-white">Dashboard</h1>
+    <p class="text-[#9d9797]">Welcome back, {{ current_user.name }}</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-    <div class="bg-white p-4 rounded-lg shadow-sm border">
-        <p class="text-sm text-gray-500">Total Tasks</p>
-        <p class="text-3xl font-bold">{{ stats.total }}</p>
+    <div class="bg-[#1a1624] p-4 rounded-[16px] border border-[#3e3a46]">
+        <p class="text-sm text-[#9d9797]">Total Tasks</p>
+        <p class="text-3xl font-light text-white">{{ stats.total }}</p>
     </div>
-    <div class="bg-white p-4 rounded-lg shadow-sm border">
-        <p class="text-sm text-gray-500">To Do</p>
-        <p class="text-3xl font-bold text-yellow-600">{{ stats.todo }}</p>
+    <div class="bg-[#1a1624] p-4 rounded-[16px] border border-[#3e3a46]">
+        <p class="text-sm text-[#9d9797]">To Do</p>
+        <p class="text-3xl font-light text-[#fd8925]">{{ stats.todo }}</p>
     </div>
-    <div class="bg-white p-4 rounded-lg shadow-sm border">
-        <p class="text-sm text-gray-500">In Progress</p>
-        <p class="text-3xl font-bold text-blue-600">{{ stats.in_progress }}</p>
+    <div class="bg-[#1a1624] p-4 rounded-[16px] border border-[#3e3a46]">
+        <p class="text-sm text-[#9d9797]">In Progress</p>
+        <p class="text-3xl font-light text-[#077ac7]">{{ stats.in_progress }}</p>
     </div>
-    <div class="bg-white p-4 rounded-lg shadow-sm border">
-        <p class="text-sm text-gray-500">Done</p>
-        <p class="text-3xl font-bold text-green-600">{{ stats.done }}</p>
+    <div class="bg-[#1a1624] p-4 rounded-[16px] border border-[#3e3a46]">
+        <p class="text-sm text-[#9d9797]">Done</p>
+        <p class="text-3xl font-light text-[#fd8925]">{{ stats.done }}</p>
     </div>
-    <div class="bg-white p-4 rounded-lg shadow-sm border">
-        <p class="text-sm text-gray-500">Overdue</p>
-        <p class="text-3xl font-bold text-red-600">{{ stats.overdue }}</p>
+    <div class="bg-[#1a1624] p-4 rounded-[16px] border border-[#3e3a46]">
+        <p class="text-sm text-[#9d9797]">Overdue</p>
+        <p class="text-3xl font-light text-[#ff492c]">{{ stats.overdue }}</p>
     </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <a href="{{ url_for('tasks.board') }}" class="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md">
-        <h2 class="text-lg font-semibold">Task Board</h2>
-        <p class="text-gray-500 text-sm">Manage your tasks with drag-and-drop Kanban board</p>
+    <a href="{{ url_for('tasks.board') }}" class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46] hover:border-[#077ac7] transition-colors">
+        <h2 class="text-lg font-medium text-white">Task Board</h2>
+        <p class="text-[#9d9797] text-sm">Manage your tasks with drag-and-drop Kanban board</p>
     </a>
-    <a href="{{ url_for('projects.list_projects') }}" class="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md">
-        <h2 class="text-lg font-semibold">Projects ({{ stats.projects }})</h2>
-        <p class="text-gray-500 text-sm">Organize tasks into projects</p>
+    <a href="{{ url_for('projects.list_projects') }}" class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46] hover:border-[#077ac7] transition-colors">
+        <h2 class="text-lg font-medium text-white">Projects ({{ stats.projects }})</h2>
+        <p class="text-[#9d9797] text-sm">Organize tasks into projects</p>
     </a>
-    <a href="{{ url_for('ai.assistant') }}" class="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md">
-        <h2 class="text-lg font-semibold">AI Assistant</h2>
-        <p class="text-gray-500 text-sm">Use AI to generate tasks and get smart suggestions</p>
+    <a href="{{ url_for('ai.assistant') }}" class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46] hover:border-[#077ac7] transition-colors">
+        <h2 class="text-lg font-medium text-white">AI Assistant</h2>
+        <p class="text-[#9d9797] text-sm">Use AI to generate tasks and get smart suggestions</p>
     </a>
-    <a href="{{ url_for('tasks.create') }}" class="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md">
-        <h2 class="text-lg font-semibold">Quick Task</h2>
-        <p class="text-gray-500 text-sm">Create a new task</p>
+    <a href="{{ url_for('tasks.create') }}" class="bg-[#1a1624] p-6 rounded-[16px] border border-[#3e3a46] hover:border-[#077ac7] transition-colors">
+        <h2 class="text-lg font-medium text-white">Quick Task</h2>
+        <p class="text-[#9d9797] text-sm">Create a new task</p>
     </a>
 </div>
 {% endblock %}
