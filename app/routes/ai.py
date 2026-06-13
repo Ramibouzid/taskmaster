@@ -27,7 +27,7 @@ def generate_task():
 
     try:
         from openai import OpenAI
-        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"])
+        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"], base_url=current_app.config["OPENAI_BASE_URL"])
         response = client.chat.completions.create(
             model=current_app.config["OPENAI_MODEL"],
             messages=[
@@ -61,7 +61,7 @@ def chat():
     try:
 
         from openai import OpenAI
-        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"])
+        client = OpenAI(api_key=current_app.config["OPENAI_API_KEY"], base_url=current_app.config["OPENAI_BASE_URL"])
         from app.models import Task
         tasks = Task.query.filter(
             (Task.assignee_id == current_user.id) | (Task.created_by == current_user.id)
