@@ -27,8 +27,9 @@ def board():
         return render_template("tasks/board.html", tasks_by_status=tasks_by_status,
                                statuses=statuses, projects=projects)
     except Exception as e:
-        logger.error("Board error: %s\n%s", str(e), traceback.format_exc())
-        return render_template("errors/500.html"), 500
+        msg = "Board error: %s\n%s" % (str(e), traceback.format_exc())
+        logger.error(msg)
+        return msg, 500
 
 
 @tasks_bp.route("/create", methods=["GET", "POST"])
